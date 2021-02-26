@@ -147,15 +147,19 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Wisata Bandung'),
       ),
-      body: FlatButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => DetailScreen()));
-        },
-        child: ListView(
-          children: tourismPlacelist
-              .map(
-                (place) => Card(
+      body: ListView(
+        children: tourismPlacelist
+            .map(
+              (place) => FlatButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => DetailScreen(place: place),
+                    ),
+                  );
+                },
+                child: Card(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -188,9 +192,9 @@ class MainScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
-              .toList(),
-        ),
+              ),
+            )
+            .toList(),
       ),
     );
   }
